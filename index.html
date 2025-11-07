@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kai Yamamoto | Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --main-bg: #f9f9f9;
+      --text-dark: #111;
+      --accent: #000;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      color: var(--text-dark);
+      background: var(--main-bg);
+      overflow-x: hidden;
+    }
+
+    /* ===== HERO SECTION ===== */
+    header {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    header video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+    }
+
+    .hero-text h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      letter-spacing: 2px;
+    }
+
+    .hero-text button {
+      margin-top: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .hero-text button:hover {
+      background: white;
+      color: black;
+    }
+
+    .socials {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .socials a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      transition: opacity 0.3s;
+    }
+
+    .socials a:hover {
+      opacity: 0.7;
+    }
+
+    /* ===== GALLERY ===== */
+    section.gallery {
+      padding: 80px 10%;
+      text-align: center;
+    }
+
+    section.gallery h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 50px;
+      letter-spacing: 1px;
+    }
+
+    .grid {
+      column-count: 3;
+      column-gap: 10px;
+    }
+
+    .grid img {
+      width: 100%;
+      display: block;
+      margin-bottom: 10px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+
+    .grid img:hover {
+      transform: scale(1.03);
+    }
+
+    /* ===== LIGHTBOX ===== */
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      flex-direction: column;
+    }
+
+    .lightbox img {
+      max-width: 80%;
+      max-height: 80%;
+      margin-bottom: 20px;
+    }
+
+    .credit {
+      color: #ccc;
+      font-size: 0.9rem;
+      font-style: italic;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 20px;
+      right: 30px;
+      font-size: 2rem;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #111;
+      color: #ddd;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+    }
+
+    footer a {
+      color: #ddd;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .hero-text h1 {
+        font-size: 2.2rem;
+      }
+      .hero-text button {
+        font-size: 0.9rem;
+      }
+      .grid {
+        column-count: 2;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .grid {
+        column-count: 1;
+      }
+    }
+header {
+  position: relative;
+}
+
+header video {
+  position: relative;
+  z-index: 1;
+}
+
+header .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 2;
+  pointer-events: none; /* allow click-through */
+}
+
+header .hero-text,
+header .socials {
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  text-align: center;
+  color: white;
+  pointer-events: none; /* allow click-through */
+}
+
+header .hero-text button,
+header .socials a {
+  pointer-events: auto; /* make buttons clickable again */
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- ===== HERO / VIDEO SECTION ===== -->
+  <header>
+    <video id="hero-video" autoplay muted loop playsinline style="cursor:pointer;">
+  <source src="1000022046.mp4" type="video/mp4">
+</video>
+
+    <div class="overlay"></div>
+
+    <div class="hero-text">
+      <h1>Kai Yamamoto</h1>
+      <button onclick="openResume()">View Acting Résumé</button>
+    </div>
+
+    <div class="socials">
+      <a href="https://www.instagram.com/kaiya_ma/" target="_blank">Instagram</a>
+      <a href="https://www.imdb.com/name/nm15393980/?ref_=nv_sr_srsg_0_tt_0_nm_8_in_0_q_kai%2520yama" target="_blank">IMDb</a>
+      <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox/FMfcgzQcqkvjtTnTXhpkhCqDxxTmxqKn?compose=GTvVlcSBmzprmvlbsbmWpcLwQbfGtWsHwtQHzzbwBrjnpZkKlpCztdCckzFhBTDJNwgWKRdcXTwxG">Email</a>
+    </div>
+  </header>
+
+  <!-- ===== MODELING GALLERY ===== -->
+  <section class="gallery" id="gallery">
+    <h2>Modeling Portfolio</h2>
+    <div class="grid">
+      <img src="images/1kai.jpg" alt="Modeling Photo 1" data-credit="Photographer: Curtis Hawthorne ">
+      <img src="images/2kai.jpg" alt="Modeling Photo 2" data-credit="Photographer:  Curtis Hawthorne ">
+      <img src="images/3kai.jpg" alt="Modeling Photo 3" data-credit="Photographer:  Curtis Hawthorne ">
+      <img src="images/4kai.jpg" alt="Modeling Photo 4" data-credit="Photographer:  Curtis Hawthorne ">
+      <img src="images/5kai.jpg" alt="Modeling Photo 5" data-credit="Photographer:  Curtis Hawthorne ">
+      <img src="images/6kai.jpg" alt="Modeling Photo 6" data-credit="Photographer:Austin Matzelle">
+      <img src="images/7kai.jpg" alt="Modeling Photo 7" data-credit="Photographer: Austin Matzelle">
+      <img src="images/8kai.jpg" alt="Modeling Photo 8" data-credit="Photographer: Austin Matzelle">
+      <img src="images/9kai.jpg" alt="Modeling Photo 9" data-credit="Photographer: Austin Matzelle">
+      <img src="images/10kai.jpg" alt="Modeling Photo 10" data-credit="Photographer: Austin Matzelle">
+      <img src="images/11kai.jpg" alt="Modeling Photo 11" data-credit="Photographer: Austin Matzelle">
+      <img src="images/12kai.jpg" alt="Modeling Photo 12" data-credit="Photographer: Austin Matzelle">
+      <img src="images/13kai.jpg" alt="Modeling Photo 13" data-credit="Photographer: Austin Matzelle">
+      <img src="images/14kai.jpg" alt="Modeling Photo 14" data-credit="Photographer: Austin Matzelle">
+      <img src="images/15kai.jpg" alt="Modeling Photo 15" data-credit="Photographer: Austin Matzelle">
+      <img src="images/16kai.jpg" alt="Modeling Photo 16" data-credit="Photographer: Austin Matzelle">
+      <img src="images/17kai.jpg" alt="Modeling Photo 17" data-credit="Photographer: Austin Matzelle">
+      <img src="images/18kai.jpg" alt="Modeling Photo 18" data-credit="Photographer: lake Lewis">
+      <img src="images/Lewis-.jpg" alt="Modeling Photo 18" data-credit="Photographer: lake Lewis">
+      <img src="images/19kai.jpg" alt="Modeling Photo 19" data-credit="Photographer: Lake Lewis">
+      <img src="images/lewis.jpg" alt="Modeling Photo 20c" data-credit="Photographer: Lake Lewis">
+      <img src="images/20b.jpg" alt="Modeling Photo 20b" data-credit="Photographer: Lake Lewis">
+      <img src="images/20kai.jpg" alt="Modeling Photo 20" data-credit="Photographer: David Adore">
+      <img src="images/21kai.jpg" alt="Modeling Photo 21" data-credit="Photographer: David Adore">
+      <img src="images/22kai.jpg" alt="Modeling Photo 22" data-credit="Photographer: David Adore">
+      <img src="images/23kai.jpg" alt="Modeling Photo 23" data-credit="Photographer: David Adore">
+      <img src="images/24kai.jpg" alt="Modeling Photo 24" data-credit="Photographer: David Adore">
+      <img src="images/25kai.jpg" alt="Modeling Photo 25" data-credit="Photographer: David Adore">
+      <img src="images/26kai.jpg" alt="Modeling Photo 26" data-credit="Photographer: Liam Rogers">
+      <img src="images/27kai.jpg" alt="Modeling Photo 27" data-credit="Photographer: Liam Rogers">
+      <img src="images/28kai.jpg" alt="Modeling Photo 28" data-credit="Photographer: Liam Rogers">
+      <img src="images/29kai.jpg" alt="Modeling Photo 29" data-credit="Photographer: Liam Rogers">
+      <img src="images/30kai.jpg" alt="Modeling Photo 30" data-credit="Photographer: Liam Rogers">
+      <img src="images/31kai.jpg" alt="Modeling Photo 31" data-credit="Photographer: Liam Rogers">
+      <img src="images/32kai.jpg" alt="Modeling Photo 32" data-credit="Photographer: Liam Rogers">
+      <img src="images/33kai.jpg" alt="Modeling Photo 33" data-credit="Photographer: Lake Lewis">
+      <img src="images/34kai.jpg" alt="Modeling Photo 34" data-credit="Photographer: Ben Hansen">
+      <img src="images/35kai.jpg" alt="Modeling Photo 35" data-credit="Photographer: Ben Hansen">
+      <img src="images/36kai.jpg" alt="Modeling Photo 36" data-credit="Photographer: Ben Hansen">
+      <img src="images/37kai.jpg" alt="Modeling Photo 37" data-credit="Photographer: Ben Hansen">
+      <img src="images/38kai.jpg" alt="Modeling Photo 38" data-credit="Photographer: Ben Hansen">
+      <img src="images/39kai.jpg" alt="Modeling Photo 39" data-credit="Photographer: Ben Hansen">
+      <img src="images/40kai.jpg" alt="Modeling Photo 40" data-credit="Photographer: Ben Hansen">
+      <img src="images/41kai.jpg" alt="Modeling Photo 41" data-credit="Photographer: Chris Loomis">
+      <img src="images/42kai.jpg" alt="Modeling Photo 42" data-credit="Photographer: Chris Loomis">
+      <img src="images/43kai.jpg" alt="Modeling Photo 43" data-credit="Photographer: Chris Loomis">
+      <img src="images/44kai.jpg" alt="Modeling Photo 44" data-credit="Photographer: Chris Loomis">
+      <img src="images/45kai.jpg" alt="Modeling Photo 45" data-credit="Photographer: Chris Loomis">
+      <img src="images/46kai.jpg" alt="Modeling Photo 46" data-credit="Photographer: Chris Loomis">
+      <img src="images/47kai.jpg" alt="Modeling Photo 47" data-credit="Photographer: Chris Loomis">
+      <img src="images/48kai.jpg" alt="Modeling Photo 48" data-credit="Photographer: Chris Loomis">
+    </div>
+  </section>
+
+  <!-- ===== LIGHTBOX ===== -->
+  <div class="lightbox" id="lightbox">
+    <span class="close-btn" onclick="closeLightbox()">&times;</span>
+    <img id="lightbox-img" src="">
+    <div class="credit" id="lightbox-credit"></div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    &copy; 2025 Kai Yamamoto. 
+    <a href="acting-resume.pdf" target="_blank">Acting Résumé</a>
+ <a href="mailto:03yamamoto.kai@gmail.com class="footer-email">03yamamoto.kai@gmail.com</a>
+
+  </footer>
+
+  <script>
+    // Lightbox functionality
+    const images = document.querySelectorAll('.grid img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxCredit = document.getElementById('lightbox-credit');
+
+    images.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+        lightboxCredit.textContent = img.dataset.credit;
+      });
+    });
+
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+    }
+
+    function openResume() {
+      window.open('acting-resume.pdf', '_blank');
+    }
+document.addEventListener("DOMContentLoaded", () => {
+  const heroVideo = document.getElementById("hero-video");
+
+  heroVideo.addEventListener("click", (e) => {
+    e.stopPropagation();
+
+    try {
+      heroVideo.muted = false;
+
+      if (heroVideo.requestFullscreen) {
+        heroVideo.requestFullscreen();
+      } else if (heroVideo.webkitRequestFullscreen) {
+        heroVideo.webkitRequestFullscreen();
+      } else if (heroVideo.msRequestFullscreen) {
+        heroVideo.msRequestFullscreen();
+      }
+
+      heroVideo.play().catch(err => {
+        console.warn("Video play blocked:", err);
+      });
+    } catch (err) {
+      console.error("Fullscreen or unmute failed:", err);
+    }
+  });
+});
+
+  </script>
+</body>
+</html>
